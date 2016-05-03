@@ -1,0 +1,5 @@
+delete from mt_cds_object where parent_id = any (select id from (select id from mt_cds_object where dc_title = '昨日') t) and cast(replace(replace(replace(metadata, 'dc%3Adate=', ''), '&dc%3Adescription=', ''), '%3A', ':') as datetime) < now() - interval 1 day;
+delete from mt_cds_object where parent_id = any (select id from (select id from mt_cds_object where dc_title = '3日前') t)and cast(replace(replace(replace(metadata, 'dc%3Adate=', ''), '&dc%3Adescription=', ''), '%3A', ':') as datetime) < now() - interval 3 day;
+delete from mt_cds_object where parent_id = any (select id from (select id from mt_cds_object where dc_title = '1週間前') t)and cast(replace(replace(replace(metadata, 'dc%3Adate=', ''), '&dc%3Adescription=', ''), '%3A', ':') as datetime) < now() - interval 7 day;
+delete from mt_cds_object where parent_id = any (select id from (select id from mt_cds_object where dc_title = '1ヶ月前') t)and cast(replace(replace(replace(metadata, 'dc%3Adate=', ''), '&dc%3Adescription=', ''), '%3A', ':') as datetime) < now() - interval 30 day;
+delete from mt_cds_object where dc_title like '%?';

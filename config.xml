@@ -122,7 +122,6 @@
   </import>
   <transcoding enabled="no">
     <mimetype-profile-mappings>
-      <transcode mimetype="video/vnd.dlna.mpeg-tts" using="avconv"/>
       <transcode mimetype="video/x-flv" using="vlcmpeg"/>
       <transcode mimetype="application/ogg" using="vlcmpeg"/>
       <transcode mimetype="application/ogg" using="oggflac2raw"/>
@@ -143,14 +142,6 @@
         <first-resource>yes</first-resource>
         <accept-ogg-theora>yes</accept-ogg-theora>
         <agent command="vlc" arguments="-I dummy %in --sout #transcode{venc=ffmpeg,vcodec=mp2v,vb=4096,fps=25,aenc=ffmpeg,acodec=mpga,ab=192,samplerate=44100,channels=2}:standard{access=file,mux=ps,dst=%out} vlc:quit"/>
-        <buffer size="14400000" chunk-size="512000" fill-size="120000"/>
-      </profile>
-      <profile name="avconv" enabled="yes" type="external">
-        <mimetype>video/mpeg</mimetype>
-        <accept-url>yes</accept-url>
-        <first-resource>yes</first-resource>
-        <accept-ogg-theora>yes</accept-ogg-theora>
-        <agent command="mediatomb-avconv" arguments="%in %out"/>
         <buffer size="14400000" chunk-size="512000" fill-size="120000"/>
       </profile>
     </profiles>

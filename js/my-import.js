@@ -217,11 +217,21 @@ function addVideo(obj)
 	    }
 	}
     } else if(obj.location.match(/\/mnt\/e\/Rec\/ドラマ/)) {
-	var series = title.split(/(#)/);
+	var series = title.split(/(-|＃|#|♯|「|」|【|】|『|』|第|（|★|〈|〉|＜|＞)/);
 	for (var i = 0; i < series.length; i++) {
-	    if(series[i].length > 0)
+	    if(series[i].length > 0 && 
+	       series[i] != '「' &&
+	       series[i] != '【' &&
+	       series[i] != '『' &&
+	       series[i] != '＜' &&
+	       series[i] != '＞' &&
+	       series[i] != '〈' &&
+	       series[i] != '〉' &&
+	       series[i] != '劇場版' &&
+	       series[i] != '映画')
 	    {
-		var name = series[i].replace(/^　|　$/, '');
+		var name = series[i].replace(/^ドラマ　/, '')
+		    .replace(/^　|　$/, '');
 		chain = new Array('シリーズ', 'ドラマ', name);
 		addCdsObject(obj, createContainerChain(chain));
 		break;

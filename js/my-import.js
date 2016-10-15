@@ -191,19 +191,26 @@ function addVideo(obj)
 
     // タイトルごと
     if(obj.location.match(/\/mnt\/d/)) {
-	var series = title.split(/(-|＃|#|♯|「|」|【|】|『|』|第.*?話|第.*?羽)/);
+	var series = title.split(/(-|＃|#|♯|「|」|【|】|『|』|第|（|★|〈|〉|＜|＞)/);
 	for (var i = 0; i < series.length; i++) {
 	    if(series[i].length > 0 && 
 	       series[i] != '「' &&
 	       series[i] != '【' &&
 	       series[i] != '『' &&
+	       series[i] != '＜' &&
+	       series[i] != '＞' &&
+	       series[i] != '〈' &&
+	       series[i] != '〉' &&
 	       series[i] != '劇場版' &&
 	       series[i] != '映画' &&
 	       series[i] != 'アニメ' &&
+	       series[i] != 'アニメイズム' &&
+	       series[i] != 'ノイタミナ' &&
+	       series[i] != 'ハオライナーズ' &&
 	       series[i] != 'ＴＶアニメ')
 	    {
 		var name = series[i].replace(/^　|　$/, '');
-		chain = new Array('シリーズ', 'アニメ', channel, name);
+		chain = new Array('シリーズ', 'アニメ', name);
 		addCdsObject(obj, createContainerChain(chain));
 		break;
 	    }

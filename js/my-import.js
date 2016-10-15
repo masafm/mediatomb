@@ -209,8 +209,8 @@ function addVideo(obj)
 	       series[i] != 'ハオライナーズ' &&
 	       series[i] != 'ＴＶアニメ')
 	    {
-		var name = series[i].replace(/^アニメ/, '');
-		name = series[i].replace(/^　|　$/, '');
+		var name = series[i].replace(/^アニメ　/, '')
+		    .replace(/^　|　$/, '');
 		chain = new Array('シリーズ', 'アニメ', name);
 		addCdsObject(obj, createContainerChain(chain));
 		break;
